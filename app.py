@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from agent import process_query
 
-st.set_page_config(page_title="Text-to-SQL Agent", page_icon=":robot_face:", layout="wide")
+st.set_page_config(page_title="Text-to-SQL Agent", layout="wide")
 st.title("Text-to-SQL Agent")
 
 
