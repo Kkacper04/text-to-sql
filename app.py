@@ -12,6 +12,10 @@ for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         if "dataframe" in msg:
             st.dataframe(msg["dataframe"])
+
+            if "sql_query" in msg:
+                with st.expander("View generated SQL"):
+                    st.code(msg["sql_query"], language="sql")
         else:
             st.markdown(msg["content"])
 
@@ -27,4 +31,17 @@ if user_prompt := st.chat_input("Ask a question in simple text"):
             for msg in result_dict.get("history", []):
                 st.write(msg)
             status.update(label="Processing query... Done",state="complete",expanded=False)
+        if result_dict.get("error"):
+            er_text = f"Error: {result_dict['error']}"
+            st.error(er_text)
+            st.session_state.messages.append({"role": "assistant", "content": er_text})
 
+        else:
+            df = result_dict.get("result")
+            st.dataframe(df)
+
+            st.session_state.messages.append({
+                "role": "assistant", 
+                "dataframe": df,
+                "sql_query": result_dict.get("sql_query")
+            })
