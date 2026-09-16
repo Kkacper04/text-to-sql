@@ -60,6 +60,9 @@ def write_sql(state: AgentState):
         "history": c_hist + [new_msg],
         "db_uri": state["db_uri"] 
     }
+def get_db_info(db_uri: str) -> str:
+    db= SQLDatabase.from_uri(db_uri)
+    return db.get_table_info()
 
 def execute_sql(state: AgentState):
     print("[EXECUTING] execute_sql | Executing query...")
