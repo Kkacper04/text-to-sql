@@ -109,7 +109,7 @@ workflow.add_conditional_edges(
 )
 
 app = workflow.compile()
-def process_query(user_question: str) ->dict:
+def process_query(user_question: str, db_uri: str) ->dict:
     final_state = app.invoke ({
         "question": user_question,
         "sql_query": "",
