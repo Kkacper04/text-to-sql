@@ -1,4 +1,6 @@
-﻿# Autonomous Text-to-SQL Data Analyst
+# Autonomous Text-to-SQL Data Analyst
+
+![Text-to-SQL Agent Demo](assets/demo.png)
 
 An intelligent agent built with LangGraph and Streamlit that interacts with a local SQLite database. The system features a self-correction loop - if a generated SQL query fails, the agent automatically captures the database error and attempts to rewrite the query until execution succeeds.
 
